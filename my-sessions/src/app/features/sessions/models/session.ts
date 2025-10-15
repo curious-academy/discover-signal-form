@@ -4,16 +4,18 @@ import { Player } from "./player";
 export interface GameSession {
   id: string;
   name: string;
+  description: string;
   date: Date;
   players: Player[];
   durationMinutes: number;
-  notes?: string;
+  notes: string;
 }
 
 export function createEmptySession(): GameSession {
   return {
     id: '',
     name: '',
+    description: '',
     date: new Date(),
     players: [],
     durationMinutes: 0,

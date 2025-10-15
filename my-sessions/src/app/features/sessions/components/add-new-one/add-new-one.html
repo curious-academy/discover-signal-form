@@ -2,6 +2,9 @@
   <label for="sessionName">Session Name:</label>
   <input id="sessionName" [control]="sessionForm.name" name="sessionName" type="text" />
 
+<label for="sessionDescription">Session description:</label>
+  <input id="sessionDescription" [control]="sessionForm.description" name="sessionDescription" type="text" />
+
   <label for="sessionDate">Date:</label>
   <input id="sessionDate" [control]="sessionForm.date" name="sessionDate" type="date" />
 
@@ -9,7 +12,8 @@
   <input id="duration" [control]="sessionForm.durationMinutes" name="duration" type="number" />
 
   <label for="notes">Notes:</label>
-  <textarea id="notes" [control]="sessionForm.notes" name="notes"></textarea>
+  <input id="notes" [control]="sessionForm.notes" name="notes" />
 
-  <button type="submit" [disabled]="sessionForm().invalid">Add Session</button>
+
+  <button type="submit" [disabled]="sessionForm().invalid()">Add Session</button>
 </form>
