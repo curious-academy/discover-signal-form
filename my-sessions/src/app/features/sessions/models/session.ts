@@ -1,3 +1,4 @@
+import { Card } from "./card";
 import { Player } from "./player";
 
 // session of a game with many friends
@@ -6,9 +7,11 @@ export interface GameSession {
   name: string;
   description: string;
   date: Date;
-  players: Player[];
+  winnerId: number;
+  players: number[];
   durationMinutes: number;
   notes: string;
+  cardsUsed: Card[];
 }
 
 export function createEmptySession(): GameSession {
@@ -18,7 +21,9 @@ export function createEmptySession(): GameSession {
     description: '',
     date: new Date(),
     players: [],
+    winnerId: 0,
     durationMinutes: 0,
-    notes: ''
+    notes: '',
+    cardsUsed: []
   };
 }

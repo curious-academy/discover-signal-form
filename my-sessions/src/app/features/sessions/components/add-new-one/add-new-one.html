@@ -1,3 +1,5 @@
+{{ sessionForm().value() | json }}
+
 <form>
   <label for="sessionName">Session Name:</label>
   <input id="sessionName" [control]="sessionForm.name" name="sessionName" type="text" />
@@ -17,8 +19,38 @@
   <label for="duration">Duration (minutes):</label>
   <input id="duration" [control]="sessionForm.durationMinutes" name="duration" type="number" />
 
+  @if(sessionForm().errors().length > 0) {
+    @for (error of sessionForm().errors(); track error.kind) {
+      <div class="error-message">- {{error.message}}</div>
+    }
+  }
+
   <label for="notes">Notes:</label>
   <input id="notes" [control]="sessionForm.notes" name="notes" />
+
+  <label>Gagnant</label>
+  <select [control]="sessionForm.winnerId" name="winner">
+    <option value="">-- Choisir un gagnant --</option>
+    @for (player of players() ; track player.id) {
+      <option value="{{player.id}}">{{player.name}}</option>
+    }
+  </select>
+
+  <label>
+    Mes amis
+  </label>
+  @for (player of players() ; track player.id) {
+    <div>
+      <input type="checkbox" [control]="sessionForm.players" [value]="player.id" id="player-{{player.id}}" />
+      <label for="player-{{player.id}}">{{player.name}}</label>
+    </div>
+  }
+
+    <h2>
+      Mes cartes jouées
+    </h2>
+    <button type="button" (click)="addCard()">Ajouter une carte</button>
+    <label>Nom carte</label>
 
 
   <button type="submit" [disabled]="sessionForm().invalid()">Add Session</button>
