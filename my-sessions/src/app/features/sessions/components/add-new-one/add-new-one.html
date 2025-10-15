@@ -5,6 +5,12 @@
 <label for="sessionDescription">Session description:</label>
   <input id="sessionDescription" [control]="sessionForm.description" name="sessionDescription" type="text" />
 
+  @if(sessionForm.description().errors().length > 0) {
+    @for (error of sessionForm.description().errors(); track error.kind) {
+      <div class="error-message">- {{error.message}}</div>
+    }
+  }
+
   <label for="sessionDate">Date:</label>
   <input id="sessionDate" [control]="sessionForm.date" name="sessionDate" type="date" />
 

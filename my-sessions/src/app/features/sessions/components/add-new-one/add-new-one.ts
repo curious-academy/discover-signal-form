@@ -13,11 +13,11 @@ export class AddNewOne {
   private readonly session = signal(createEmptySession());
   protected readonly sessionForm = form(this.session, session => {
     required(session.name);
-    required(session.description, {when: ({ valueOf }) => valueOf(session.name) !== '' && valueOf(session.name).length > 3});
+    required(session.description, {message: 'plouf', when: ({ valueOf }) => valueOf(session.name) !== '' && valueOf(session.name).length > 3});
   });
 
   constructor() {
-    const notes = this.sessionForm.notes;
+    const notes = this.sessionForm.notes();
 
 
   }
