@@ -22,6 +22,7 @@ export class AddNewOne {
     defaultValue: false,
     loader: async (params) => {
       await new Promise(resolve => setTimeout(resolve, 1000));
+      console.info('validating ?', params)
       return true
     }
   });
