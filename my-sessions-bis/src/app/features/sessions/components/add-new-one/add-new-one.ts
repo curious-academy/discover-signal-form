@@ -44,7 +44,7 @@ export class AddNewOne {
     validateAsync(session.notes, {
       params: ({ valueOf }) => ({ name: valueOf(session.notes) }),
       factory: () => this.tryValidate,
-      errors: (err) => {
+      errors: (value) => {
         console.info('error ?', err)
         return null;
       }
@@ -52,6 +52,8 @@ export class AddNewOne {
   });
 
   addCard() {
-
+    if(this.sessionForm().valid()) {
+      const result = this.sessionForm().value()
+    }
   }
 }

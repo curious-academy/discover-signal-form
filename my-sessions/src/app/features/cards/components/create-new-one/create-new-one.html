@@ -1,0 +1,26 @@
+Card : {{ card() | json }}  // Card form : {{ cardForm().value() | json }}
+
+<div>
+    Erreurs globales {{this.cardForm().errorSummary() }}
+  @for (error of cardForm().errorSummary(); track error.kind) {
+   <div>ERR {{ error.kind }}</div>
+  }
+</div>
+
+<form  [formGroup]="cardForm">
+  <input type="text" formControlName="name" />
+  <input type="text" formControlName="description" />
+  <input type="text" formControlName="mana" />
+
+  <button type="submit" [disabled]="! cardForm.valid">Create</button>
+</form>
+
+
+
+<form (submit)="save()">
+  <input type="text" [control]="cardForm.name" />
+  <input type="text" [control]="cardForm.description" />
+  <input type="text" [control]="cardForm.mana" />
+
+  <button type="submit" [disabled]="cardForm().invalid()">Create</button>
+</form>

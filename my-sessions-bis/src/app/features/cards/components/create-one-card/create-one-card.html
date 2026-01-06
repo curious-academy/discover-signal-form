@@ -1,0 +1,12 @@
+<form>
+<label>
+    Label
+  </label>
+  <input type="text" [control]="cardForm.name" />
+
+  @for (error of cardForm().errors(); track error.kind) {
+    <span>{{ error.message }}</span>
+  }
+
+<button type="submit" [disabled]="cardForm().invalid()" >Créer</button>
+</form>
